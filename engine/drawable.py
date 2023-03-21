@@ -23,6 +23,6 @@ class Drawable:
             pygame.draw.polygon(screen, self.color, attr.get("points"))
             debug_info += "{}, {}, {}".format(*attr.get("points")).replace("[", "(").replace("]", ")")
 
-        print(debug_info)
+        #print(debug_info)
 
 

@@ -1,24 +1,23 @@
 import mock
-import pygame
-from pygame import Surface, Rect
+from pygame import Surface
 
 from engine.canvas import Canvas
 
+
 class TestCanvasShow:
 
-    def test_should_show_canvas(self):
-        pygame_mock = mock.Mock(pygame.display)
+    @mock.patch('pygame.display.set_mode')
+    def test_should_show_canvas(self, mock_display):
         surface = mock.Mock(Surface)
+        mock_display.return_value = surface
+        canvas = Canvas([0, 0])
 
-        pygame_mock.set_mode([0, 0]).return_value = None
-        surface.fill("white").return_value = None
+        # Check that we got value returned by pygame.display.set_mode
+        assert canvas.show() == surface
 
-        pygame_mock.set_mode.assert_called_with([0, 0])
+        # Check that we call fill method with "white" argument
         surface.fill.assert_called_with("white")
 
-        canvas = Canvas([0, 0])
-        canvas.display = pygame_mock
-        canvas.show()
 
 
 

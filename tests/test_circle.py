@@ -16,5 +16,5 @@ class TestCircle:
     def test_should_has_points(self, point, radius, expected):
         assert Circle(point, radius).center == point
 
-    def test_inherit_draw(self):
+    def test_should_be_drawable(self):
         assert isinstance(mock.Mock(Circle), Drawable)
